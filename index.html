@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InAmigos Foundation | Interactive Showcase</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+        .canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        .glass-panel { background: rgba(15, 23, 42, 0.45); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass-card-light { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); }
+        .text-glow { text-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
+        .custom-gradient { background: linear-gradient(135deg, #064e3b 0%, #022c22 50%, #0f172a 100%); }
+        /* Smooth Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100">
+
+    <nav class="fixed w-full top-0 z-50 bg-slate-950/75 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <span class="text-2xl font-extrabold tracking-tight text-emerald-400">InAmigos<span class="text-white">.</span></span>
+            <div class="hidden md:flex space-x-8 font-medium text-slate-400">
+                <a href="#home" class="hover:text-emerald-400 transition-colors">Home</a>
+                <a href="#about" class="hover:text-emerald-400 transition-colors">About</a>
+                <a href="#projects" class="hover:text-emerald-400 transition-colors">Projects</a>
+                <a href="#impact" class="hover:text-emerald-400 transition-colors">Impact Data</a>
+            </div>
+            <a href="#cta" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-5 py-2.5 rounded-xl font-bold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-emerald-500/20">Join Matrix</a>
+        </div>
+    </nav>
+
+    <header id="home" class="relative min-h-screen flex items-center custom-gradient pt-20 overflow-hidden">
+        <div id="hologram-globe-viewport" class="canvas-container"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10 items-center pointer-events-none">
+            <div class="lg:col-span-7 space-y-6 pointer-events-auto" data-aos="fade-right" data-aos-duration="1000">
+                <span class="inline-flex items-center gap-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Youth-Led Transformation Track
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-none text-white text-glow">
+                    Empowering Lives,<br>
+                    <span class="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">Spreading Compassion</span>
+                </h1>
+                <p class="text-slate-300 text-lg sm:text-xl max-w-2xl leading-relaxed font-light">
+                    A tech-forward, certified Section 8 non-profit engine designing modern structural relief models across India. Driven by active youths, targeted corporate social investments, and transparent social metrics.
+                </p>
+                <div class="pt-4 flex flex-wrap gap-4">
+                    <a href="#projects" class="bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 px-8 py-4 rounded-xl font-extrabold text-base hover:opacity-90 shadow-xl shadow-emerald-500/20 transition transform hover:-translate-y-0.5">Explore Deployments</a>
+                    <a href="#about" class="border border-white/10 hover:border-white/30 glass-panel text-white px-8 py-4 rounded-xl font-semibold text-base transition">Read Manifesto</a>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-5 h-[350px] lg:h-[500px] w-full"></div>
+        </div>
+    </header>
+
+    <section id="about" class="py-32 bg-slate-950 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="grid grid-cols-2 gap-4" data-aos="zoom-in-right">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80&w=600" class="rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-500 h-64 w-full object-cover" alt="NGO Volunteer distribution track">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=600" class="rounded-2xl shadow-2xl mt-8 transform hover:scale-105 transition-all duration-500 h-64 w-full object-cover" alt="Underprivileged classroom infrastructure mentorship">
+            </div>
+            
+            <div class="space-y-6" data-aos="fade-left">
+                <span class="text-emerald-400 font-extrabold uppercase tracking-widest text-xs">Structural Architecture</span>
+                <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white">Systemic Social Progress Driven by Structural Validation</h2>
+                <p class="text-slate-400 leading-relaxed font-light">
+                    Founded on September 23, 2020 under the strategic vision of Mr. Govind Shukla, InAmigos Foundation manages critical societal gaps by integrating technology, young content innovators, and structured frameworks.
+                </p>
+                
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-start gap-4 p-4 rounded-xl glass-panel">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400"><i class="fa-solid fa-file-shield"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white text-base">Full Compliance Clearance</h4>
+                            <p class="text-xs text-slate-400">80G, 12A, NITI Aayog registered with legal parameters.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 p-4 rounded-xl glass-panel">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white text-base">ISO 9001:2015 Management</h4>
+                            <p class="text-xs text-slate-400">Certified verification of resource allocation, management, and field data logs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-32 bg-slate-900/40">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+                <span class="text-emerald-400 font-extrabold uppercase tracking-widest text-xs">Core Operational Vectors</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight text-white">Active Social Infrastructure Units</h2>
+                <p class="text-slate-400 font-light">Dynamic youth campaigns deployed systematically to restore ecological balances and secure fundamental livelihood vectors.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-panel rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all group flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Feeding campaign">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Project Seva</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <p class="text-slate-400 text-sm leading-relaxed font-light">Systematic optimization tracks targeting meal and nutrition shortfalls inside slum segments and daily-wage colonies.</p>
+                        <div class="text-xs font-bold text-slate-500 pt-4 border-t border-white/5 flex justify-between">
+                            <span><i class="fa-solid fa-users text-emerald-400 mr-1"></i> 50k+ Servings</span>
+                            <span class="text-emerald-400">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all group flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Education initiative">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bachpanshala</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <p class="text-slate-400 text-sm leading-relaxed font-light">Primary technical skills development and literacy resources configured directly inside rural underfunded classrooms.</p>
+                        <div class="text-xs font-bold text-slate-500 pt-4 border-t border-white/5 flex justify-between">
+                            <span><i class="fa-solid fa-graduation-cap text-emerald-400 mr-1"></i> Continuous Tracks</span>
+                            <span class="text-emerald-400">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all group flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Women alignment craft workshops">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-purple-500/20 text-purple-300 border border-purple-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Project Udaan</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <p class="text-slate-400 text-sm leading-relaxed font-light">Vocational skills infrastructure, digital tools integration, and dynamic healthcare awareness programs for rural women.</p>
+                        <div class="text-xs font-bold text-slate-500 pt-4 border-t border-white/5 flex justify-between">
+                            <span><i class="fa-solid fa-heart text-emerald-400 mr-1"></i> 900+ Shifted</span>
+                            <span class="text-emerald-400">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all group flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Tree planting">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Project Prakriti</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <p class="text-slate-400 text-sm leading-relaxed font-light">Systemic urban reforestation setups, local seed distribution metrics, and community climate training panels.</p>
+                        <div class="text-xs font-bold text-slate-500 pt-4 border-t border-white/5 flex justify-between">
+                            <span><i class="fa-solid fa-tree text-emerald-400 mr-1"></i> 20k+ Afforested</span>
+                            <span class="text-emerald-400">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all group flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Stray animals rescue logistics">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Project Jeev</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <p class="text-slate-400 text-sm leading-relaxed font-light">Urban animal defense loops supplying daily clinical tracking parameters and stray nutrition distributions.</p>
+                        <div class="text-xs font-bold text-slate-500 pt-4 border-t border-white/5 flex justify-between">
+                            <span><i class="fa-solid fa-paw text-emerald-400 mr-1"></i> 50+ Monitored</span>
+                            <span class="text-emerald-400">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-2xl overflow-hidden hover:border-emerald-500/30 transition-all group flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Technical intern optimization layout">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+                        <span class="absolute bottom-4 left-4 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Project Vikas</span>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
+                        <p class="text-slate-400 text-sm leading-relaxed font-light">Scalable internship allocations configuring code workflows, graphic layout creation, and digital communication parameters.</p>
+                        <div class="text-xs font-bold text-slate-500 pt-4 border-t border-white/5 flex justify-between">
+                            <span><i class="fa-solid fa-briefcase text-emerald-400 mr-1"></i> 30k+ Trained</span>
+                            <span class="text-emerald-400">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="py-32 bg-slate-950 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-20 space-y-4">
+                <span class="text-emerald-400 font-extrabold uppercase tracking-widest text-xs">Verified Operations Log</span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight">Social Capital Tracking Matrix</h2>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-8 rounded-2xl glass-panel text-center relative overflow-hidden" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 to-emerald-500"></div>
+                    <div class="text-4xl sm:text-5xl font-black text-white mb-2 font-mono tracking-tight" data-value="50000">0</div>
+                    <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Nutritional Reliefs</div>
+                </div>
+                <div class="p-8 rounded-2xl glass-panel text-center relative overflow-hidden" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-teal-500"></div>
+                    <div class="text-4xl sm:text-5xl font-black text-white mb-2 font-mono tracking-tight" data-value="20000">0</div>
+                    <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Reforestations Logged</div>
+                </div>
+                <div class="p-8 rounded-2xl glass-panel text-center relative overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-purple-500"></div>
+                    <div class="text-4xl sm:text-5xl font-black text-white mb-2 font-mono tracking-tight" data-value="900">0</div>
+                    <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Women Vocationalized</div>
+                </div>
+                <div class="p-8 rounded-2xl glass-panel text-center relative overflow-hidden" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-cyan-500"></div>
+                    <div class="text-4xl sm:text-5xl font-black text-white mb-2 font-mono tracking-tight" data-value="30000">0</div>
+                    <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Intern Systems Dispatched</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta" class="py-32 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-6 text-center space-y-8" data-aos="fade-up">
+            <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">Initiate Action on the Grid</h2>
+            <p class="text-slate-400 text-lg font-light max-w-2xl mx-auto">
+                Join the #InAmigos campaign architecture. Deploy your skills as a content creator, register localized volunteer nodes, or allocate strategic corporate sponsorship models.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                <a href="mailto:support@inamigosfoundation.org.in" class="flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-8 py-4 rounded-xl font-bold transition shadow-lg shadow-emerald-500/10">
+                    <i class="fa-solid fa-user-plus"></i> Register Volunteer Node
+                </a>
+                <a href="https://inamigosfoundation.org.in/" target="_blank" class="flex items-center justify-center gap-2 border border-white/10 hover:bg-white/5 text-white px-8 py-4 rounded-xl font-semibold transition">
+                    <i class="fa-solid fa-network-wired"></i> Enter Official Portal
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 border-t border-white/5 py-12 text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="text-sm font-bold text-slate-300">InAmigos Foundation</p>
+                <p class="mt-1">© 2026 InAmigos Foundation. Section-8 Public Initiative Structure. All Rights Reserved.</p>
+            </div>
+            <div class="flex space-x-6 text-base text-slate-400">
+                <a href="#" class="hover:text-emerald-400 transition"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-emerald-400 transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-emerald-400 transition"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 1000 });
+
+        // Numeric Node Increment Algorithm 
+        const launchCounters = () => {
+            document.querySelectorAll('[data-value]').forEach(el => {
+                const target = parseInt(el.getAttribute('data-value'), 10);
+                let current = 0;
+                const increment = target / 50; // Smooth rate scaling
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        el.textContent = target.toLocaleString() + "+";
+                        clearInterval(timer);
+                    } else {
+                        el.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 30);
+            });
+        };
+
+        const targetSection = document.getElementById('impact');
+        const observer = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) { launchCounters(); observer.disconnect(); }
+        }, { threshold: 0.1 });
+        observer.observe(targetSection);
+
+
+        // --- ADVANCED THREE.JS HOLOGRAPHIC NETWORK GLOBE ---
+        const initHologramGlobe = () => {
+            const container = document.getElementById('hologram-globe-viewport');
+            if(!container) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 1, 1000);
+            
+            // Re-orient camera viewport dynamically for smaller displays
+            if(window.innerWidth < 1024) {
+                camera.position.set(0, 0, 260);
+            } else {
+                camera.position.set(60, 20, 180);
+            }
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            const masterGroup = new THREE.Group();
+            scene.add(masterGroup);
+
+            // 1. Core Structural Particles Mesh
+            const dotCount = 1400;
+            const dotGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(dotCount * 3);
+            const radius = 60;
+
+            for(let i=0; i < dotCount * 3; i+=3) {
+                const u = Math.random();
+                const v = Math.random();
+                const theta = u * 2.0 * Math.PI;
+                const phi = Math.acos(2.0 * v - 1.0);
+                
+                positions[i] = radius * Math.sin(phi) * Math.cos(theta);
+                positions[i+1] = radius * Math.sin(phi) * Math.sin(theta);
+                positions[i+2] = radius * Math.cos(phi);
+            }
+            dotGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const dotMaterial = new THREE.PointsMaterial({
+                color: 0x34d399,
+                size: 1.4,
+                transparent: true,
+                opacity: 0.6
+            });
+            const coreGlobe = new THREE.Points(dotGeometry, dotMaterial);
+            masterGroup.add(coreGlobe);
+
+            // 2. Holographic Interconnecting Vector Arcs Array
+            const arcCount = 25;
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x22d3ee,
+                transparent: true,
+                opacity: 0.35,
+                blending: THREE.AdditiveBlending
+            });
+
+            for(let j=0; j < arcCount; j++) {
+                const points = [];
+                // Pick two random vector tracks mapped onto the spherical surface
+                const v1 = new THREE.Vector3(Math.random()-0.5, Math.random()-0.5, Math.random()-0.5).normalize().multiplyScalar(radius);
+                const v2 = new THREE.Vector3(Math.random()-0.5, Math.random()-0.5, Math.random()-0.5).normalize().multiplyScalar(radius);
+                
+                // Construct quadratic Bezier curve to simulate elevation arc loops
+                const midPoint = new THREE.Vector3().addVectors(v1, v2).multiplyScalar(0.5).normalize().multiplyScalar(radius * 1.35);
+                const curve = new THREE.QuadraticBezierCurve3(v1, midPoint, v2);
+                
+                const pathPoints = curve.getPoints(20);
+                const lineGeometry = new THREE.BufferGeometry().setFromPoints(pathPoints);
+                const arcLine = new THREE.Line(lineGeometry, lineMaterial);
+                masterGroup.add(arcLine);
+            }
+
+            // Interactive Viewport Mouse Tracker Matrices
+            let targetX = 0, targetY = 0;
+            window.addEventListener('mousemove', (e) => {
+                targetX = (e.clientX - window.innerWidth / 2) * 0.0015;
+                targetY = (e.clientY - window.innerHeight / 2) * 0.0015;
+            });
+
+            // Production Render Matrix Animation Loop
+            const clock = new THREE.Clock();
+            const drawFrame = () => {
+                requestAnimationFrame(drawFrame);
+                const delta = clock.getDelta();
+
+                // Structural Rotations
+                masterGroup.rotation.y += 0.04 * delta;
+                masterGroup.rotation.x += 0.01 * delta;
+
+                // Smooth cursor lag alignment interpolations
+                masterGroup.rotation.y += (targetX - masterGroup.rotation.y) * 0.05;
+                masterGroup.rotation.x += (targetY - masterGroup.rotation.x) * 0.05;
+
+                renderer.render(scene, camera);
+            };
+            drawFrame();
+
+            // Responsive Layout Adaptation Observer
+            window.addEventListener('resize', () => {
+                if(window.innerWidth < 1024) {
+                    camera.position.set(0, 0, 260);
+                } else {
+                    camera.position.set(60, 20, 180);
+                }
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', initHologramGlobe);
+    </script>
+</body>
+</html>
+
